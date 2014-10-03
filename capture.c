@@ -78,16 +78,16 @@ static void process_image(const void *p, int size)
 
     if (out_buf==0)
     {
+        /* write to stdout */
+        write(1, p, size);
+    }
+    else
+    {
         /* write to file */
         FILE *fp=fopen("video.raw","ab");
         fwrite(p, size, 1, fp);
         fflush(fp);
         fclose(fp);
-    }
-    else
-    {
-        /* write to stdout */
-        write(1, p, size);
     }
 }
 
@@ -189,7 +189,7 @@ static void mainloop(void)
 
 	count = frame_count;
 
-	while (count-- > 0) {
+	while (true) {
 		for (;; ) {
 			fd_set fds;
 			struct timeval tv;
