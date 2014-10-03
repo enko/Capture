@@ -185,11 +185,7 @@ static int read_frame(void)
 
 static void mainloop(void)
 {
-	unsigned int count;
-
-	count = frame_count;
-
-	while (true) {
+	while (1) {
 		for (;; ) {
 			fd_set fds;
 			struct timeval tv;
